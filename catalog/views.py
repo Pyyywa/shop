@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from catalog.models import Product
 
+
 def home(request):
     product_list = Product.objects.all()
     context = {
@@ -9,12 +10,14 @@ def home(request):
     }
     return render(request, 'catalog/home.html', context)
 
-# def home(request):
-#     if request.method == 'POST':
-#          name = request.POST.get('name')
-#          email = request.POST.get('email')
-#          print(f"{name}: {email}")
-#     return render(request, 'catalog/home.html')
+
+def product(request, pk):
+    product_item = Product.objects.get(pk=pk)
+    context = {
+        'object_list': Product.objects.filter(id=pk),
+        'title': f'{product_item.product_name}'
+    }
+    return render(request, 'catalog/product.html', context)
 
 
 def contacts(request):

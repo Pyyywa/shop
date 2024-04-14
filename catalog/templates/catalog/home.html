@@ -14,7 +14,7 @@
         </div>
         <h2 class="fw-normal">{{ object|title }}</h2>
         <p>{{ object.desc|slice:":100" }}</p>
-        <p><a class="btn btn-secondary" href="#">{{ object.quantity_per_unit }} руб. &raquo;</a></p>
+        <p><a class="btn btn-secondary" href="{% url 'catalog:product' object.pk %}">{{ object.quantity_per_unit }} руб. &raquo;</a></p>
       </div><!-- /.col-lg-4 -->
         {% endfor %}
     </div><!-- /.row -->
