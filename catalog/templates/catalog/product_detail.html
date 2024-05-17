@@ -4,16 +4,23 @@
 
 <div class="container py-4">
     <div class="row justify-content-center">
-        {% for object in object_list %}
+        <!--убираем цикл тк работаем с CBV-->
+
         <div class="col-md-4 mb-4">
           <img src="{% mediapath object.image %}" class="card-img-top" />
           <div class="card-body text-center">
-                <h5 class="card-title">{{ object|title }}</h5>
+                <h5 class="card-title">{{ object.product_name|title }} ({{ object.slug }})</h5>
                 <p class="card-text">{{ object.desc }}</p>
                 <p class="card-text"><strong>{{ object.quantity_per_unit }} руб.</strong></p>
           </div>
+
+            <div class="card-footer">
+              <p>Просмотры: {{ object.views_count }}</p>
+              <p>Дата создания {{ object.сreation_date }}</p>
+              <p>Опубликовано: {{ object.is_published|title }}</p>
+            </div>
         </div>
     </div>
-        {% endfor %}
+
 </div><!-- /.container -->
 {% endblock %}
