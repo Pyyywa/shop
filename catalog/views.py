@@ -1,8 +1,8 @@
 from django.shortcuts import render
-from pytils.translit import slugify
-from django.urls import reverse_lazy, reverse
+from django.urls import reverse_lazy
 from catalog.models import Product
-from django.views.generic import ListView, DetailView#, CreateView, UpdateView, DeleteView
+from django.views.generic import ListView, DetailView
+#, CreateView, UpdateView, DeleteView
 
 
 class ProductListView(ListView):
@@ -51,7 +51,8 @@ def contacts(request):
 
 # class ProductCreateView(CreateView):
 #     model = Product
-#     fields = ('product_name', 'desc', 'image', 'category', 'quantity_per_unit', 'сreation_date', 'last_change_date', 'is_published')
+#     fields = ('product_name', 'desc', 'image',
+#     'category', 'quantity_per_unit', 'сreation_date', 'last_change_date', 'is_published')
 #
 #     def form_valid(self, form):
 #         if form.is_valid():
@@ -67,7 +68,8 @@ def contacts(request):
 #
 # class ProductUpdateView(UpdateView):
 #     model = Product
-#     fields = ('product_name', 'desc', 'image', 'category', 'quantity_per_unit', 'сreation_date', 'last_change_date', 'is_published')
+#     fields = ('product_name', 'desc', 'image',
+#     'category', 'quantity_per_unit', 'сreation_date', 'last_change_date', 'is_published')
 #     #success_url = reverse_lazy('catalog:base')
 #
 #     def form_valid(self, form):
@@ -79,7 +81,8 @@ def contacts(request):
 #         return super().form_valid(form)
 #
 #     def get_success_url(self):
-#         return reverse('catalog:product_detail', args=[self.kwargs.get('pk')])
+#         return reverse('catalog:product_detail',
+#         args=[self.kwargs.get('pk')])
 #
 # class ProductDeleteView(DeleteView):
 #     model = Product

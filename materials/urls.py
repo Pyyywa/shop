@@ -1,9 +1,10 @@
 from django.urls import path
 
 from materials.apps import MaterialsConfig
-from materials.views import (MaterialCreateView, MaterialListView, MaterialDetailView, MaterialUpdateView,
-                             MaterialDeleteView, published)
-app_name =MaterialsConfig.name
+from materials.views import (MaterialCreateView, MaterialListView,
+                             MaterialDetailView,
+                             MaterialUpdateView, MaterialDeleteView, published)
+app_name = MaterialsConfig.name
 
 urlpatterns = [
     path('create/', MaterialCreateView.as_view(), name='create'),

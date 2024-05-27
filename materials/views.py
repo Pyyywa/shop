@@ -1,10 +1,11 @@
-from django.shortcuts import render
 from pytils.translit import slugify
 from django.urls import reverse_lazy, reverse
 from django.shortcuts import get_object_or_404, redirect
-from django.views.generic import CreateView, ListView, DetailView, UpdateView, DeleteView
+from django.views.generic import (CreateView, ListView, DetailView,
+                                  UpdateView, DeleteView)
 
 from materials.models import Material
+
 
 class MaterialCreateView(CreateView):
     model = Material
@@ -23,7 +24,7 @@ class MaterialCreateView(CreateView):
 class MaterialUpdateView(UpdateView):
     model = Material
     fields = ('title', 'body')
-    #success_url = reverse_lazy('materials:list')
+#   success_url = reverse_lazy('materials:list')
 
     def form_valid(self, form):
         if form.is_valid():
