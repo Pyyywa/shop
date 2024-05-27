@@ -1,20 +1,22 @@
-from django.shortcuts import render
 from pytils.translit import slugify
 from django.urls import reverse_lazy, reverse
-from django.views.generic import CreateView, ListView, DetailView, UpdateView, DeleteView
+from django.shortcuts import get_object_or_404, redirect
+from django.views.generic import (CreateView, ListView, DetailView,
+                                  UpdateView, DeleteView)
 
 from materials.models import Material
 
+
 class MaterialCreateView(CreateView):
     model = Material
-    fields = ('title', 'body')
+    fields = ('title', 'body', 'is_published', 'img', 'date_creation')
     success_url = reverse_lazy('materials:list')
 
     def form_valid(self, form):
         if form.is_valid():
-            new_materil = form.save()
-            new_materil.slug = slugify(new_materil.title)
-            new_materil.save()
+            new_material = form.save()
+            new_material.slug = slugify(new_material.title)
+            new_material.save()
 
         return super().form_valid(form)
 
@@ -22,7 +24,7 @@ class MaterialCreateView(CreateView):
 class MaterialUpdateView(UpdateView):
     model = Material
     fields = ('title', 'body')
-    #success_url = reverse_lazy('materials:list')
+#   success_url = reverse_lazy('materials:list')
 
     def form_valid(self, form):
         if form.is_valid():
@@ -41,7 +43,7 @@ class MaterialListView(ListView):
 
     def get_queryset(self, *args, **kwargs):
         queryset = super().get_queryset(*args, **kwargs)
-        queryset = queryset.filter(is_published=True)
+        queryset = queryset.filter()
         return queryset
 
 
@@ -58,3 +60,15 @@ class MaterialDetailView(DetailView):
 class MaterialDeleteView(DeleteView):
     model = Material
     success_url = reverse_lazy('materials:list')
+
+
+def published(request, pk):
+    item = get_object_or_404(Material, pk=pk)
+    if item.is_published:
+        item.is_published = False
+    else:
+        item.is_published = True
+
+    item.save()
+
+    return redirect(reverse('materials:list'))
