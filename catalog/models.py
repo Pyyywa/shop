@@ -13,9 +13,9 @@ class Product(models.Model):
     сreation_date = models.DateField(verbose_name ='дата создания')
     last_change_date = models.DateTimeField(verbose_name ='дата последнего изменения', **NULLABLE)
 
-    views_count = models.IntegerField(default=0, verbose_name='просмотры')
-    is_published = models.BooleanField(default=True, verbose_name='опубликовано')
-    slug = models.CharField(max_length=150, verbose_name='slug', null=True, blank=True)
+    # views_count = models.IntegerField(default=0, verbose_name='просмотры')
+    # is_published = models.BooleanField(default=True, verbose_name='опубликовано')
+    # slug = models.CharField(max_length=150, verbose_name='slug', null=True, blank=True)
 
 
     def __str__(self):

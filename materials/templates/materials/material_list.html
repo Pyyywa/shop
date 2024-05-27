@@ -22,9 +22,11 @@
           <a href="{% url 'materials:delete' object.pk %}"
              class="btn btn-sm btn-outline-danger">Delete</a>
         </div>
-
-        <p>{{ object.desc|slice:":100" }}</p>
-        <p><h6 class="fw-nornal" >{{ object.quantity_per_unit }} руб.</h6></p>
+        {% if object.is_published %}
+        <a class="btn btn-warning" href="{% url 'materials:published' object.pk %}">Не публиковать</a>
+        {% else %}
+        <a class="btn btn-success"  href="{% url 'materials:published' object.pk %}">Опубликовать</a>
+        {% endif %}
 
       </div>
       {% endfor %}
